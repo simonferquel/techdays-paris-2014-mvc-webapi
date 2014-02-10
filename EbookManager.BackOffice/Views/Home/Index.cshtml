@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Accueil";
+}
+
+<div class="jumbotron">
+    <h1>Ebook Manager Back Office</h1>
+    <p class="lead">Application de démonstration utilisée pour la session "ASP.NET MVC 5 et Web API 2, Techdays 2014".</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Gestion du catalogue</h2>
+        <p>
+            Administration du catalogue d'ebooks
+        </p>
+        <p>@Html.ActionLink("Accéder", "Index", "AdminCatalog", null, new { @class = "btn btn-primary" })</p>
+    </div>
+</div>

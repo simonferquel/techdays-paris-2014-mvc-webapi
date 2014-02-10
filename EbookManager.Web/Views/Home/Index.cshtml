@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Accueil";
+}
+
+<div class="jumbotron">
+    <h1>Ebook Manager</h1>
+    <p class="lead">Application de démonstration utilisée pour la session "ASP.NET MVC 5 et Web API 2, Techdays 2014".</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Catalogue</h2>
+        <p>
+            Parcourez notre catalogue de livre, achetez et commencez à lire en quelques instants...
+        </p>
+        <p>@Html.ActionLink("Accéder", "Index", "Catalog", null, new{ @class = "btn btn-primary"})</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Mes eBooks</h2>
+        <p>Retrouvez votre collection d'eBooks déjà acheté sur Ebook Manager.</p>
+        <p>@Html.ActionLink("Accéder", "Index", "MySpace", null, new { @class = "btn btn-primary" })</p>
+    </div>
+</div>

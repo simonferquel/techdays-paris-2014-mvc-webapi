@@ -1,0 +1,69 @@
+﻿@model EbookManager.BackOffice.Models.EditEbookModel
+
+@{
+    ViewBag.Title = "Edition d'un eBook";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@using (Html.BeginForm("EditEBook", "AdminCatalog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="row" style="margin: 5px">
+        <div class="col-lg-6">
+            <div class="row form-group">
+                @Html.LabelFor(m => m.Title)
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control input-lg" })
+                @Html.ValidationMessageFor(m => m.Title)
+            </div>
+
+            <div class="row form-group">
+                @Html.LabelFor(m => m.Summary)
+                @Html.TextAreaFor(m => m.Summary, new { @class = "form-control input-lg", rows = 10 })
+                @Html.ValidationMessageFor(m => m.Summary)
+            </div>
+
+            <div class="row">
+                <img src="data:image/png;base64,@Model.Base64Thumbnail" style="max-width: 100px" />
+            </div>
+
+            <div class="row form-group">
+                @Html.LabelFor(m => m.Thumbnail)
+                <input type="file" name="@Html.NameFor(m => m.Thumbnail)" class="form-control" />
+                @Html.ValidationMessageFor(m => m.Thumbnail)
+            </div>
+        </div>
+        <div class="col-lg-6">
+            @Html.LabelFor(m => m.Parts)
+            <p>Il y @Model.PartsCount partie(s) enregistrée(s) pour ce livre</p>
+            
+            <ul>
+                @foreach (var part in Model.ExistingParts)
+                {
+                    <li><a href="@Url.Content(string.Format("~/EbookPartFileHandler.axd?ebook={0}&position={1}", part.EbookId, part.Position))">@part.FileName</a></li>
+                }
+            </ul>
+
+            <p><button class="btn" id="btnAddPart">Ajouter une partie</button></p>
+            <div id="parts">
+                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" value="Sauvegarder" class="btn btn-primary pull-right" />
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#btnAddPart").click(function (e) {
+                e.preventDefault();
+                $("#parts").append("<div class='row'><input type='file' class='form-control' style='margin:5px; margin-left:15px;' name='@Html.NameFor(m => m.Parts)' /></div>");
+            });
+        });
+    </script>
+}

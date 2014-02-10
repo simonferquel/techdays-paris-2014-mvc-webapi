@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="EBookClient.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EBookClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    mc:Ignorable="d">
+
+    <Grid x:Name="layoutRoot"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Background="Black" Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Ebook Manager" Style="{StaticResource HeaderTextBlockStyle}" 
+                   Margin="30,0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Logged" Foreground="White" VerticalAlignment="Center" x:Name="txtUsername"
+                       Grid.Column="1" Margin="30,0" FontSize="16" Visibility="Collapsed"/>
+        </Grid>
+
+        <StackPanel VerticalAlignment="center" HorizontalAlignment="Center" Grid.Row="1">
+            <Button Content="Se connecter" Click="OnLoginClick" Width="250" x:Name="BtnLogin" />
+            <Button Content="Se déconnecter" Click="OnLogoutClick" Width="250" x:Name="BtnLogout" />
+            <Button Content="Afficher Web View authentifiée" Click="OnWebviewClick" Width="250" x:Name="BtnWebView" />
+            <Button Content="Mes ebooks" Click="OnMyEBooksClick" Width="250" x:Name="BtnMyEbooks" />
+        </StackPanel>
+        <Grid Background="Black" Height="50" Grid.Row="2">
+            <TextBlock Text="© 2014 - Techdays 2014 Ebook Manager - Julien Corioland / Simon Ferquel" Margin="30,0" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,37 @@
+﻿@model EbookManager.BackOffice.Models.AddEbookModel
+
+@{
+    ViewBag.Title = "Ajouter un ebook";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@using (Html.BeginForm("Add", "AdminCatalog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row form-group col-lg-12">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control input-lg" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+    <div class="row form-group col-lg-12">
+        @Html.LabelFor(m => m.Summary)
+        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control input-lg", rows = 10 })
+        @Html.ValidationMessageFor(m => m.Summary)
+    </div>
+
+    <div class="row form-group col-lg-12">
+        @Html.LabelFor(m => m.Thumbnail)
+        <input type="file" name="@Html.NameFor(m => m.Thumbnail)" class="form-control" />
+        @Html.ValidationMessageFor(m => m.Thumbnail)
+    </div>
+
+    <div class="row form-group col-lg-12">
+        <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

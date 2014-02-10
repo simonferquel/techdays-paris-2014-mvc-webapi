@@ -1,0 +1,25 @@
+﻿@model EbookManager.Web.Models.CatalogViewModel
+
+@{
+    ViewBag.Title = "Parcourir le catalogue";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr/>
+
+@if (!Model.Ebooks.Any())
+{
+    <div class="alert alert-info">
+        <strong>Ooops</strong>
+        <p>Notre catalogue semble vide...</p>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var ebook in Model.Ebooks)
+        {
+            @Html.DisplayFor(m => ebook)
+        }
+    </div>
+}

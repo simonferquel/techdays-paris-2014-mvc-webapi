@@ -1,0 +1,52 @@
+﻿@model EbookManager.CommonViewModels.EbookViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-lg-12">
+        <img src="data:image/png;base64,@Model.Thumbnail" alt="@Model.Title" class="img-thumbnail ebook-thumbnail">
+    </div>
+</div>
+
+<h3>Résumé</h3>
+<div class="row">
+    <div class="col-lg-12">
+        @Html.DisplayFor(m => m.Summary)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <span>Cet ebook est composé de @Model.PartsCount partie(s).</span>
+    </div>
+</div>
+
+<hr />
+
+@if (ViewBag.UserOwnsBook)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <span>Vous possédez déjà cet eBook dans @Html.ActionLink("votre catalogue", "Index", "MySpace").</span>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-12">
+            @using (Html.BeginForm("Buy", "Catalog", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.Id)
+                <input type="submit" class="btn btn-primary" value="Acheter l'eBook" />
+            }
+        </div>
+    </div>
+}
+
+
+

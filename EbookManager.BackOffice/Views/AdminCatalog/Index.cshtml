@@ -1,0 +1,44 @@
+﻿@model EbookManager.BackOffice.Models.AdminCatalogModel
+
+@{
+    ViewBag.Title = "Administration du catalogue";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row col-lg-12">
+    @Html.ActionLink("Ajouter un Ebook", "Add", "AdminCatalog", null, new { @class = "btn btn-primary" })
+</div>
+
+<div class="row col-lg-12" style="margin-top: 30px;">
+    @if (!Model.Ebooks.Any())
+    {
+        <div class="alert alert-info">
+            <strong>Ooops</strong>
+            <p>Le catalogue est vide</p>
+        </div>
+    }
+    else
+    {
+        <table style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Résumé</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.Ebooks)
+                {
+                    <tr>
+                        <td>@book.Title</td>
+                        <td>@book.Summary</td>
+                        <td>@Html.RouteLink("Editer", "editEbook", new { ebookId = book.Id }) - @Html.RouteLink("Supprimer", "deleteEbook", new { ebookId = book.Id })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">
+            Bonjour @User.Identity.Name!
+        </li>
+        <li>
+            @Html.ActionLink("Se déconnecter", "SignOut", "Account")
+        </li>
+    </ul>
+    </text>
+}
